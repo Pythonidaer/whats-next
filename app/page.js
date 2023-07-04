@@ -1,6 +1,5 @@
 // 'use client'
 import styles from './page.module.css'
-// import { useRouter } from 'next/navigation'
 import { prisma } from './db.'
 import { redirect } from 'next/navigation'
 
@@ -47,32 +46,6 @@ async function createPosting(data) {
 }
 
 export default async function Page() {
-  // const router = useRouter()
-  const postings = await prisma.posting.findMany()
-  // await prisma.posting.create({
-  //   data: {
-  //     title: 'test',
-  //     company: 'test',
-  //     expLevel: 'test',
-  //     url: 'test',
-  //     issue: 'test',
-  //     contact: 'test',
-  //   },
-  // })
-
-  /* 
-  Submit is in a Server Componet
-  However, events are Client-Side
-  Will need to understand how to store this Component
-  Also want to redirect after successful submission
-
-  onClick={handleClick}
-  const handleClick = (event) => {
-    event.preventDefault()
-    console.log('test')
-    // router.push('/table')
-  }
-  */
   return (
     <main className={styles.main}>
       <p>Submit a Job Posting you took Issue With</p>
