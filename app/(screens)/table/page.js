@@ -1,6 +1,6 @@
 import { prisma } from '../../db.'
 
-function getPostings() {
+async function getPostings() {
   return prisma.posting.findMany()
 }
 
