@@ -11,38 +11,45 @@ export default async function Table() {
 
   return (
     <main>
-      <table className='border-collapse'>
-        <thead>
-          <tr>
-            <th className='py-2 px-4 bg-gray-100 border-b'>Job Title</th>
-            <th className='py-2 px-4 bg-gray-100 border-b'>Company Name</th>
-            <th className='py-2 px-4 bg-gray-100 border-b'>
-              Posted Experience Level
-            </th>
-            <th className='py-2 px-4 bg-gray-100 border-b'>URL to Role</th>
-            <th className='py-2 px-4 bg-gray-100 border-b'>Posting Issue</th>
-            <th className='py-2 px-4 bg-gray-100 border-b'>
-              Contact On Listing?
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {postings.map((posting) => (
-            <tr key={posting.id}>
-              <td className='py-2 px-4 border-b'>{posting.title}</td>
-              <td className='py-2 px-4 border-b'>{posting.company}</td>
-              <td className='py-2 px-4 border-b'>{posting.expLevel}</td>
-              <td className='py-2 px-4 border-b'>
-                <a href={posting.url} target='_blank'>
-                  Link
-                </a>
-              </td>
-              <td className='py-2 px-4 border-b'>{posting.issue}</td>
-              <td className='py-2 px-4 border-b'>{posting.contact}</td>
+      <div className='overflow-x-auto'>
+        <table className='min-w-full border-collapse'>
+          <thead>
+            <tr>
+              <th className='py-2 px-4 bg-gray-100 border-b'>Job Title</th>
+              <th className='py-2 px-4 bg-gray-100 border-b'>Company Name</th>
+              <th className='py-2 px-4 bg-gray-100 border-b'>
+                Posted Experience Level
+              </th>
+              <th className='py-2 px-4 bg-gray-100 border-b'>URL to Role</th>
+              <th className='py-2 px-4 bg-gray-100 border-b'>Posting Issue</th>
+              <th className='py-2 px-4 bg-gray-100 border-b'>
+                Contact On Listing?
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {postings.map((posting) => (
+              <tr key={posting.id}>
+                <td className='py-2 px-4 border-b'>{posting.title}</td>
+                <td className='py-2 px-4 border-b'>{posting.company}</td>
+                <td className='py-2 px-4 border-b'>{posting.expLevel}</td>
+                <td className='py-2 px-4 border-b'>
+                  <a
+                    href={posting.url}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='text-blue-500 hover:underline'
+                  >
+                    Link
+                  </a>
+                </td>
+                <td className='py-2 px-4 border-b'>{posting.issue}</td>
+                <td className='py-2 px-4 border-b'>{posting.contact}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </main>
   )
 }
