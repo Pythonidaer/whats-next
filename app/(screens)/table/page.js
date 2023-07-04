@@ -1,6 +1,7 @@
 // 'use client'
 // import { prisma } from '../../db.'
 import TableRow from '../../components/TableRows'
+import RefreshButton from '@/app/components/RefreshButton'
 
 // async function getPostings() {
 //   return prisma.posting.findMany()
@@ -15,6 +16,7 @@ export default async function Page() {
 
   return (
     <main>
+      <RefreshButton />
       <div className='overflow-x-auto'>
         <table className='min-w-full border-collapse'>
           <thead>
