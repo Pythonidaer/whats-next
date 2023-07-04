@@ -1,59 +1,133 @@
-'use client'
+// 'use client'
 import styles from './page.module.css'
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
+import { prisma } from './db.'
+import { redirect } from 'next/navigation'
 
-export default function Page() {
-  const router = useRouter()
+async function createPosting(data) {
+  'use server'
+  const title = data.get('title')?.valueOf()
+  const company = data.get('company')?.valueOf()
+  const expLevel = data.get('expLevel')?.valueOf()
+  const url = data.get('url')?.valueOf()
+  const issue = data.get('issue')?.valueOf()
+  const contact = data.get('contact')?.valueOf()
 
+  switch (true) {
+    case title.length === 0:
+      throw new Error('Invalid Title')
+    case company.length === 0:
+      throw new Error('Invalid Company')
+    case expLevel.length === 0:
+      throw new Error('Invalid Experience Level')
+    case url.length === 0:
+      throw new Error('Invalid URL')
+    case issue.length === 0:
+      throw new Error('Invalid Issue')
+    case contact.length === 0:
+      throw new Error('Invalid Contact')
+    // Add more cases for other fields as needed
+    default:
+      // Default case if none of the conditions match
+      break
+  }
+
+  await prisma.posting.create({
+    data: {
+      title,
+      company,
+      expLevel,
+      url,
+      issue,
+      contact,
+    },
+  })
+
+  redirect('/table')
+}
+
+export default async function Page() {
+  // const router = useRouter()
+  const postings = await prisma.posting.findMany()
+  // await prisma.posting.create({
+  //   data: {
+  //     title: 'test',
+  //     company: 'test',
+  //     expLevel: 'test',
+  //     url: 'test',
+  //     issue: 'test',
+  //     contact: 'test',
+  //   },
+  // })
+
+  /* 
+  Submit is in a Server Componet
+  However, events are Client-Side
+  Will need to understand how to store this Component
+  Also want to redirect after successful submission
+
+  onClick={handleClick}
   const handleClick = (event) => {
     event.preventDefault()
     console.log('test')
-    router.push('/table')
+    // router.push('/table')
   }
+  */
   return (
     <main className={styles.main}>
       <p>Submit a Job Posting you took Issue With</p>
-      <form className={styles.formContainer}>
-        <label className={styles.label} htmlFor='role'>
+      <form action={createPosting} className={styles.formContainer}>
+        <label className={styles.label} htmlFor='title'>
           Name of Role:
         </label>
         <input
           className={styles.inputField}
           type='text'
-          id='role'
-          name='role'
+          id='title'
+          name='title'
           required
         />
 
-        <label className={styles.label} htmlFor='employer'>
+        <label className={styles.label} htmlFor='company'>
           Name of Employer:
         </label>
         <input
           className={styles.inputField}
           type='text'
-          id='employer'
-          name='employer'
+          id='company'
+          name='company'
           required
         />
 
-        <label className={styles.label} htmlFor='link'>
+        <label className={styles.label} htmlFor='url'>
           Link to Role:
         </label>
         <input
           className={styles.inputField}
           type='text'
-          id='link'
-          name='link'
+          id='url'
+          name='url'
           required
         />
 
-        <label className={styles.label} htmlFor='bone'>
+        <label className={styles.label} htmlFor='expLevel'>
+          Experience Level:
+        </label>
+        <input
+          className={styles.inputField}
+          type='text'
+          id='expLevel'
+          name='expLevel'
+          required
+        />
+
+        <label className={styles.label} htmlFor='issue'>
           Bone to Pick:
         </label>
         <textarea
           className={styles.textarea}
-          id='bone'
-          name='bone'
+          id='issue'
+          name='issue'
           rows='4'
           required
         ></textarea>
@@ -63,9 +137,9 @@ export default function Page() {
           <input
             className={styles.radioButton}
             type='radio'
-            id='yes'
+            id='Yes'
             name='contact'
-            value='yes'
+            value='Yes'
             required
           />
           <label className={styles.label} htmlFor='yes'>
@@ -76,21 +150,17 @@ export default function Page() {
           <input
             className={styles.radioButton}
             type='radio'
-            id='no'
+            id='No'
             name='contact'
-            value='no'
+            value='No'
             required
           />
-          <label className={styles.label} htmlFor='no'>
+          <label className={styles.label} htmlFor='No'>
             No
           </label>
         </div>
 
-        <button
-          className={styles.submitButton}
-          type='submit'
-          onClick={handleClick}
-        >
+        <button className={styles.submitButton} type='submit'>
           Submit
         </button>
       </form>
