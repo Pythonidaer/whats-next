@@ -1,0 +1,46 @@
+.formContainer {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.inputField,
+.textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.textarea {
+  height: 120px;
+}
+
+.radioButton {
+  margin-right: 5px;
+}
+
+.submitButton {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+  .formContainer {
+    max-width: 100%;
+    padding: 10px;
+  }
+}

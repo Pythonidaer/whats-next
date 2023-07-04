@@ -1,0 +1,24 @@
+.footer {
+  background-color: #f2f2f2;
+  padding: 20px 0;
+  width: 100%;
+  margin-top: auto;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerText {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Optional: Add additional styles to customize the footer appearance */
+#__next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
