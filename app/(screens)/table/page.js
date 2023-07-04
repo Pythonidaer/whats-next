@@ -1,14 +1,13 @@
 import { prisma } from '../../db.'
 
-export default async function Table() {
-  const postings = await prisma.posting.findMany()
-  // const postings = await getPostings()
-  console.log(postings)
-  console.log(`Postings: ${postings}`)
+async function getPostings() {
+  return prisma.posting.findMany()
+}
 
-  // if (!postings) {
-  //   return <div>Loading...</div>
-  // }
+export default async function Table() {
+  // let postings = use(getPostings())
+  // const postings = await prisma.posting.findMany()
+  const postings = await getPostings()
 
   return (
     <main>

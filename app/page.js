@@ -1,4 +1,3 @@
-// 'use client'
 import styles from './page.module.css'
 import { prisma } from './db.'
 import { redirect } from 'next/navigation'
