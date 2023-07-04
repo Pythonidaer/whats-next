@@ -1,24 +1,11 @@
 import { prisma } from '../../db.'
 
-/*In React app: fetch/React Query*/
-
 function getPostings() {
   return prisma.posting.findMany()
 }
 
 export default async function Table() {
   const postings = await getPostings()
-
-  // await prisma.posting.create({
-  //   data: {
-  //     title: 'Senior Frontend Developer',
-  //     company: 'Gigster',
-  //     expLevel: 'Entry level',
-  //     url: 'https://www.linkedin.com/jobs/view/3630979367/?alternateChannel=search&refId=8qh8WFijwsll0lyjTgFGGQ%3D%3D&trackingId=We9vuH30uKm0SAL9biT5QA%3D%3D',
-  //     issue: 'Posted in Entry Level but is a Senior role',
-  //     contact: 'no',
-  //   },
-  // })
 
   return (
     <main>
