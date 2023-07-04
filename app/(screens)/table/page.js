@@ -1,13 +1,17 @@
-import { prisma } from '../../db.'
+// 'use client'
+// import { prisma } from '../../db.'
+import TableRow from '../../components/TableRows'
 
-async function getPostings() {
-  return prisma.posting.findMany()
-}
+// async function getPostings() {
+//   return prisma.posting.findMany()
+// }
 
-export default async function Table() {
+export const dynamic = 'force-dynamic'
+
+export default async function Page() {
   // let postings = use(getPostings())
   // const postings = await prisma.posting.findMany()
-  const postings = await getPostings()
+  // const postings = await getPostings()
 
   return (
     <main>
@@ -27,27 +31,7 @@ export default async function Table() {
               </th>
             </tr>
           </thead>
-          <tbody>
-            {postings.map((posting) => (
-              <tr key={posting.id}>
-                <td className='py-2 px-4 border-b'>{posting.title}</td>
-                <td className='py-2 px-4 border-b'>{posting.company}</td>
-                <td className='py-2 px-4 border-b'>{posting.expLevel}</td>
-                <td className='py-2 px-4 border-b'>
-                  <a
-                    href={posting.url}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='text-blue-500 hover:underline'
-                  >
-                    Link
-                  </a>
-                </td>
-                <td className='py-2 px-4 border-b'>{posting.issue}</td>
-                <td className='py-2 px-4 border-b'>{posting.contact}</td>
-              </tr>
-            ))}
-          </tbody>
+          <TableRow />
         </table>
       </div>
     </main>

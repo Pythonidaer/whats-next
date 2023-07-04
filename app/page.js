@@ -41,7 +41,7 @@ async function createPosting(data) {
     },
   })
 
-  redirect('/table')
+  await redirect('/table')
 }
 
 export default async function Page() {
