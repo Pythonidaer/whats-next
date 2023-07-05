@@ -11,26 +11,35 @@ const Header = () => {
     return pathname === href ? styles.navLinkActive : styles.navLinkInactive
   }
   return (
-    <header className={styles.header}>
-      <nav className={styles.nav}>
-        <ul className={styles.navList}>
-          <li className={styles.navItem}>
-            <Link href='/' className={isCurrentPage('/')}>
+    <header className='bg-blue-500'>
+      <nav className='flex items-center justify-end py-4 px-8'>
+        <ul className='flex space-x-4'>
+          <li>
+            <Link href='/' className={`text-white ${isCurrentPage('/')}`}>
               Home
             </Link>
           </li>
-          <li className={styles.navItem}>
-            <Link href='/about' className={isCurrentPage('/about')}>
+          <li>
+            <Link
+              href='/about'
+              className={`text-white ${isCurrentPage('/about')}`}
+            >
               About
             </Link>
           </li>
-          <li className={styles.navItem}>
-            <Link className={isCurrentPage('/table')} href='/table'>
+          <li>
+            <Link
+              href='/table'
+              className={`text-white ${isCurrentPage('/table')}`}
+            >
               Table
             </Link>
           </li>
-          <li className={styles.navItem}>
-            <Link className={isCurrentPage('/contact')} href='/contact'>
+          <li>
+            <Link
+              href='/contact'
+              className={`text-white ${isCurrentPage('/contact')}`}
+            >
               Contact
             </Link>
           </li>

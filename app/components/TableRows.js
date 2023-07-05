@@ -1,4 +1,3 @@
-'use server'
 import { prisma } from '../db.'
 
 async function getPostings() {
@@ -7,8 +6,6 @@ async function getPostings() {
 }
 
 export default async function Page() {
-  // let postings = use(getPostings())
-  // const postings = await prisma.posting.findMany()
   const postings = await getPostings()
 
   return (

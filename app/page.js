@@ -30,25 +30,34 @@ async function createPosting(data) {
       break
   }
 
-  await prisma.posting.create({
-    data: {
-      title,
-      company,
-      expLevel,
-      url,
-      issue,
-      contact,
-    },
-  })
-
+  try {
+    await prisma.posting.create({
+      data: {
+        title,
+        company,
+        expLevel,
+        url,
+        issue,
+        contact,
+      },
+    })
+  } catch (error) {
+    console.error(error)
+  }
   await redirect('/table')
 }
 
 export default async function Page() {
   return (
     <main className={styles.main}>
-      <p>Submit a Job Posting you took Issue With</p>
-      <form action={createPosting} className={styles.formContainer}>
+      <p className='text-center font-bold text-lg mt-8 mb-4'>
+        Submit a Job Posting you took Issue With
+      </p>
+
+      <form
+        action={createPosting}
+        className={`bg-blue-100 p-4 rounded-lg ${styles.formContainer} `}
+      >
         <label className={styles.label} htmlFor='title'>
           Name of Role:
         </label>
@@ -64,7 +73,7 @@ export default async function Page() {
           Name of Employer:
         </label>
         <input
-          className={styles.inputField}
+          className={` ${styles.inputField}`}
           type='text'
           id='company'
           name='company'
@@ -105,7 +114,7 @@ export default async function Page() {
         ></textarea>
 
         <label className={styles.label}>Job Listing Contact:</label>
-        <div>
+        <div className='flex items-center'>
           <input
             className={styles.radioButton}
             type='radio'
@@ -114,11 +123,11 @@ export default async function Page() {
             value='Yes'
             required
           />
-          <label className={styles.label} htmlFor='yes'>
+          <label className={styles.label} htmlFor='Yes'>
             Yes
           </label>
         </div>
-        <div>
+        <div className='flex items-center'>
           <input
             className={styles.radioButton}
             type='radio'
@@ -131,8 +140,10 @@ export default async function Page() {
             No
           </label>
         </div>
-
-        <button className={styles.submitButton} type='submit'>
+        <button
+          className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full'
+          type='submit'
+        >
           Submit
         </button>
       </form>

@@ -1,6 +1,6 @@
 .formContainer {
   max-width: 500px;
-  margin: 0 auto;
+  margin: 0 auto 2rem;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -19,6 +19,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
+  background: rgb(240, 240, 240);
 }
 
 .textarea {
